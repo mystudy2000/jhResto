@@ -1,0 +1,53 @@
+entity Menu {
+	restaurant Restaurant
+    meals Meal
+    date  LocalDate
+}
+
+entity Meal {
+	name String required 
+    cost BigDecimal required
+}
+
+entity Restaurant {
+	name String  required
+    address String required
+    url String
+    phone String
+    registered LocalDateTime
+}
+
+entity User {
+	name String required
+    email String required
+    password String
+    enabled Boolean
+    role Role
+    registered LocalDateTime
+}
+
+enum Role {
+    ROLE_USER, ROLE_ADMIN
+}
+
+entity Vote {
+    menu Menu required
+    user User required
+    registered LocalDateTime
+}
+
+relationship OneToMany {
+	Menu{meals} to Meal
+    
+}
+relationship ManyToOne {
+	Menu{restaurant} to Restaurant
+    Vote{user} to User
+    Vote{menu} to Menu
+}
+
+dto Restaurant, Meal, User, Menu, Vote with mapstruct
+service Vote, Menu, Mealm, Restaurant, User with serviceImpl
+paginate User, Restaurant with pager
+
+
