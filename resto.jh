@@ -1,5 +1,5 @@
 entity Menu {
-	restaurant Restaurant
+	restaurant Restaurant required
     meals Meal
     date  LocalDate
 }
