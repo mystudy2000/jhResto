@@ -1,5 +1,5 @@
 entity Menu {
-	restaurant Restaurant
+	name Restaurant required
     meals Meal
     date  LocalDate
 }
@@ -36,12 +36,13 @@ entity Vote {
     registered LocalDateTime
 }
 
+relationship OneToOne {
+    Menu{name} to Restaurant
+}
 relationship OneToMany {
 	Menu{meals} to Meal
-    
 }
 relationship ManyToOne {
-	Menu{restaurant} to Restaurant
     Vote{user} to User
     Vote{menu} to Menu
 }
